@@ -52,6 +52,8 @@ audio2.play();
     return;
   }
 
+  
+
   if(strTodisplay.includes("3124")){
     love.play();
     display(jatin);
@@ -63,6 +65,22 @@ strTodisplay = eval(strTodisplay);
 
 display(strTodisplay);
 return;
+  }
+
+  if(value === "."){
+    const lastOperatorIndex = strTodisplay.lastIndexOf(lastOperator);
+
+    const numSet = strTodisplay.slice(lastOperatorIndex);
+
+    if(numSet.includes(".")){
+
+      return;
+    }
+
+    if (!lastOperator && strTodisplay.includes(".")) {
+      return;
+    }
+
   }
 
   strTodisplay += value;
