@@ -63,7 +63,6 @@ strTodisplay = eval(strTodisplay);
 
 display(strTodisplay);
 return;
-
   }
 
   strTodisplay += value;
