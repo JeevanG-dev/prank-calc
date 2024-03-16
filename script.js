@@ -2,7 +2,7 @@ const allBtns = document.querySelectorAll(".btn");
 const dis = document.querySelector(".display");
 
 let strTodisplay = "";
-const operators = ["+", "-", "/", "%"];
+const operators = ["+", "-", "/", "%", "*"];
 const lastOperator = "";
 
 const jaggu = "I love you POOjA";
@@ -51,6 +51,14 @@ audio2.play();
     display(jaggu);
     return;
   }
+
+  if(strTodisplay.includes("3124")){
+    love.play();
+    display(jatin);
+    return;
+  }
+
+  if(strTodisplay.ic)
 strTodisplay = eval(strTodisplay);
 
 display(strTodisplay);
