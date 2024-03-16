@@ -1,78 +1,63 @@
-const displayElm = document.querySelector(".display");
-
-
 const allBtns = document.querySelectorAll(".btn");
+const dis = document.querySelector(".display");
 
-let strtoDisplay ="";
+let strTodisplay = "";
+const operators = ["+", "-", "/", "%"];
+const lastOperator = "";
 
-const operators = ["%","/","*","-","+"];
+const jaggu = "I love you POOjA";
+const jatin = "I love you Bhuntu"
 
-const love = "3124";
+const audio = new Audio("./mouse-2.mp3");
+const audio2 = new Audio("./aa.wav");
+const love = new Audio ("./I love you.mp3")
 
-let lastOperators="";
-
-allBtns.forEach((btn)=>{
-  btn.addEventListener("click", ()=>{
+allBtns.forEach((btn) => {
+  btn.addEventListener("click", () => {
+  audio.play();
     const value = btn.innerText;
-    buttonAction(value);
-  })
 
-  
-})
+    actionButton(value);
+  });
+});
 
+const display = (str) => {
+  dis.innerText = str || "0.0";
+};
 
-const display =(abc)=>{
-  displayElm.innerText = abc || "0.0";
-}
-
-
-
-
-const buttonAction = (value)=>{
-
-  if(value=== "AC"){
-    strtoDisplay="";
-    display(strtoDisplay);
+const actionButton = (value) => {
+  if (value === "AC") {
+    strTodisplay = "";
+    display();
     return;
   }
 
-  if(value=== "C"){
+  if (value === "C") {
+    strTodisplay = strTodisplay.slice(0, -1);
+    display(strTodisplay);
+    return;
+  }
 
 
-strtoDisplay=strtoDisplay.slice(0,-1)
+  if(value === "="){
+    let ls = strTodisplay[strTodisplay.length -1];
 
-display(strtoDisplay);
+    if(operators.includes(ls)){
+strTodisplay = strTodisplay.slice(0,-1);
+audio2.play();
+    }
+  if(strTodisplay.includes("7336")){
+    love.play();
+    display(jaggu);
+    return;
+  }
+strTodisplay = eval(strTodisplay);
+
+display(strTodisplay);
 return;
 
   }
 
-
-  if(value=="="){
-
-const lc = strtoDisplay[strtoDisplay.length -1];
-
-if(operators.includes(lc)){
-  
-  strtoDisplay=strtoDisplay.slice(0,-1);
-}
-
-if(strtoDisplay.includes(love)){
-  strtoDisplay = "I Love you Bhuntu";
-
-  display(strtoDisplay)
-}
-
-
-strtoDisplay = eval(strtoDisplay)
-display(strtoDisplay)
-return;
-}
-
-
-
-  strtoDisplay += value;
-  display(strtoDisplay);
-}
-
-
-
+  strTodisplay += value;
+  display(strTodisplay);
+};
