@@ -58,7 +58,7 @@ audio2.play();
     return;
   }
 
-  if(strTodisplay.ic)
+  
 strTodisplay = eval(strTodisplay);
 
 display(strTodisplay);
