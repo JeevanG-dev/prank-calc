@@ -1,88 +1,106 @@
-const allBtns = document.querySelectorAll(".btn");
 const dis = document.querySelector(".display");
+const allBtns = document.querySelectorAll(".btn");
 
-let strTodisplay = "";
-const operators = ["+", "-", "/", "%", "*"];
-const lastOperator = "";
+let strToDisplay = "";
+const Operators = ["%","*","+","-","/"];
 
-const jaggu = "I love you POOjA";
-const jatin = "I love you Bhuntu"
+let lastOperator = "";
+const jatin = "I love you Bhuntu;)"
 
 const audio = new Audio("./mouse-2.mp3");
 const audio2 = new Audio("./aa.wav");
-const love = new Audio ("./I love you.mp3")
+const love = new Audio("./I love you.mp3");
 
-allBtns.forEach((btn) => {
-  btn.addEventListener("click", () => {
-  audio.play();
+allBtns.forEach((btn)=>{
+  btn.addEventListener("click",()=>{
+
+    audio.play();
     const value = btn.innerText;
+actionButton(value);
+  })
+})
 
-    actionButton(value);
-  });
-});
 
-const display = (str) => {
+const Display = (str)=>{
   dis.innerText = str || "0.0";
-};
+}
 
-const actionButton = (value) => {
-  if (value === "AC") {
-    strTodisplay = "";
-    display();
+
+const actionButton = (value)=>{
+
+  if(value ==="AC"){
+    strToDisplay = "";
+    Display(strToDisplay);
     return;
   }
 
-  if (value === "C") {
-    strTodisplay = strTodisplay.slice(0, -1);
-    display(strTodisplay);
+  if(value ==="C"){
+    strToDisplay = strToDisplay.slice(0,-1);
+    Display(strToDisplay);
     return;
   }
 
+if(value === "="){
+  const lsCheck = strToDisplay[strToDisplay.length -1];
 
-  if(value === "="){
-    let ls = strTodisplay[strTodisplay.length -1];
-
-    if(operators.includes(ls)){
-strTodisplay = strTodisplay.slice(0,-1);
-audio2.play();
-    }
-  if(strTodisplay.includes("7336")){
-    love.play();
-    display(jaggu);
-    return;
+  if(Operators.includes(lsCheck)){
+    audio2.play();
+    strToDisplay = strToDisplay.slice(0,-1);
+ 
   }
 
-  
-
-  if(strTodisplay.includes("3124")){
-    love.play();
-    display(jatin);
-    return;
-  }
-
-  
-strTodisplay = eval(strTodisplay);
-
-display(strTodisplay);
+  if(strToDisplay.includes("3124")){
+Display(jatin);
+love.play();
 return;
-  }
-
-  if(value === "."){
-    const lastOperatorIndex = strTodisplay.lastIndexOf(lastOperator);
-
-    const numSet = strTodisplay.slice(lastOperatorIndex);
-
-    if(numSet.includes(".")){
-
-      return;
-    }
-
-    if (!lastOperator && strTodisplay.includes(".")) {
-      return;
-    }
 
   }
+  strToDisplay = eval(strToDisplay);
+  Display(strToDisplay);
+return;
+}
 
-  strTodisplay += value;
-  display(strTodisplay);
-};
+if(value === "-"){
+
+strToDisplay = eval(strToDisplay);
+Display(strToDisplay);
+}
+
+if(value === "+"){
+  
+  strToDisplay = eval(strToDisplay);
+  Display(strToDisplay);
+  }
+
+  if(value === "/"){
+    strToDisplay = eval(strToDisplay);
+    Display(strToDisplay);
+    }
+
+
+    if(value === "*"){
+      strToDisplay = eval(strToDisplay);
+      Display(strToDisplay);
+      }
+
+      if(value === "%"){
+        strToDisplay = eval(strToDisplay);
+        Display(strToDisplay);
+       
+        }
+
+
+  strToDisplay+= value;
+  Display(strToDisplay);
+
+ 
+}
+
+document.addEventListener("keypress", (e)=>{
+const value = e.key;
+if(e.code.includes("Key")){
+  return;
+}
+actionButton(value);
+})
+
